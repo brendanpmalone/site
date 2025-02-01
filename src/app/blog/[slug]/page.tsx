@@ -1,18 +1,17 @@
 import { getPostBySlug, getAllPosts } from '@/lib/blog';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
-}
-
-interface PageProps {
-  params: {
-    slug: string;
-  };
 }
 
 export default function BlogPost({ params }: PageProps) {
@@ -38,7 +37,7 @@ export default function BlogPost({ params }: PageProps) {
             </time>
           </div>
           <div className="mt-10 prose prose-lg prose-indigo">
-            <MDXRemote source={post.content} />
+            {post.content}
           </div>
         </div>
       </div>
