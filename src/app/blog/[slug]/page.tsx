@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPost({ params }: PageProps) {
+export default async function BlogPost({ params }: PageProps) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
