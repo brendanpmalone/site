@@ -9,7 +9,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function BlogPost({ params }: PageProps) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
